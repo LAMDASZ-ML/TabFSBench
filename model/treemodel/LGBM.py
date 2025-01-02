@@ -17,7 +17,7 @@ def CatB(task, train_set, test_sets):
         if task == 'binary':
                 model = LGBMClassifier()
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-                grid_search.fit(X_train, y_train)
+                grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
                 model = LGBMClassifier(**best_params)
                 model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
@@ -36,7 +36,7 @@ def CatB(task, train_set, test_sets):
                 model = LGBMClassifier()
                 param_grid['num_classes'] = 3
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-                grid_search.fit(X_train, y_train)
+                grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
                 model = LGBMClassifier(**best_params)
                 model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
@@ -55,7 +55,7 @@ def CatB(task, train_set, test_sets):
                 model = LGBMRegressor()
                 param_grid.pop("num_classes", None)
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-                grid_search.fit(X_train, y_train)
+                grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
                 model = LGBMRegressor(**best_params)
                 model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])

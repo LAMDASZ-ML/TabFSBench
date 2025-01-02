@@ -1,0 +1,4 @@
+{
+  "device": "gpu",
+  "N_ensemble_configurations": [16,32]
+}
