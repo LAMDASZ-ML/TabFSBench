@@ -18,7 +18,7 @@ def CatB(task, train_set, test_sets):
                 model = XGBClassifier()
                 param_grid['eval_metric'] = 'logloss'
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-                grid_search.fit(X_train, y_train)
+                grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
                 model = XGBClassifier(**best_params)
                 model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
@@ -37,7 +37,7 @@ def CatB(task, train_set, test_sets):
                 model = XGBClassifier()
                 param_grid['eval_metric'] = 'mlogloss'
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-                grid_search.fit(X_train, y_train)
+                grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
                 model = XGBClassifier(**best_params)
                 model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
@@ -56,7 +56,7 @@ def CatB(task, train_set, test_sets):
                 model = XGBRegressor()
                 param_grid['eval_metric'] = 'rmse'
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-                grid_search.fit(X_train, y_train)
+                grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
                 model = XGBRegressor(**best_params)
                 model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])

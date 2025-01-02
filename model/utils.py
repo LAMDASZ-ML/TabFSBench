@@ -10,6 +10,15 @@ from dlmodel.utils import *
 
 THIS_PATH = os.path.dirname(__file__)
 
+def get_dataset(dataset):
+    filename = './dataset/' + dataset + '/info.json'
+    with open(filename, 'r') as file:
+        data = json.load(file)
+
+    task = data['task']
+    link = data['link']
+    return task, link
+
 def llm(dataset, model, train_set, test_sets):
 
     # prompt
@@ -105,7 +114,7 @@ def tabular_llm(dataset, model, train_set, test_sets):
 
 def tree_model(dataset, model, train_set, test_sets):
 
-    dataset_task = get_dataset(dataset) # Get whether the dataset is a binary, multiclassification or regression task
+    dataset_task, _ = get_dataset(dataset) # Get whether the dataset is a binary, multiclassification or regression task
 
     if model == 'LightGBM':
         metric1, metric2 = LGBM(dataset_task, train_set, test_sets)
@@ -123,7 +132,7 @@ def tree_model(dataset, model, train_set, test_sets):
 
 def deep_learning(dataset, model, train_set, test_sets):
 
-    dataset_task = get_dataset(dataset)  # Get whether the dataset is a binary, multiclassification or regression task
+    dataset_task, _ = get_dataset(dataset)  # Get whether the dataset is a binary, multiclassification or regression task
 
     metric1, metric2 = test_model(dataset, model, train_set, test_sets)
 

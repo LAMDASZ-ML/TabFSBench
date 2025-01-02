@@ -17,7 +17,7 @@ def CatB(task, train_set, test_sets):
         if task == 'binary':
                 model = CatBoostClassifier()
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-                grid_search.fit(X_train, y_train)
+                grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
                 model = CatBoostClassifier(**best_params)
                 model.fit(train_set.iloc[:,:-1], train_set.iloc[:,-1])
@@ -36,7 +36,7 @@ def CatB(task, train_set, test_sets):
                 model = CatBoostClassifier()
                 param_grid['loss_function'] = 'MultiClass'
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-                grid_search.fit(X_train, y_train)
+                grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
                 model = CatBoostClassifier(**best_params)
                 model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
@@ -55,7 +55,7 @@ def CatB(task, train_set, test_sets):
                 model = CatBoostRegressor()
                 param_grid.pop("loss_function", None)
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-                grid_search.fit(X_train, y_train)
+                grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
                 model = CatBoostRegressor(**best_params)
                 model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
