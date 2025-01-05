@@ -8,7 +8,7 @@ import numpy as np
 import sklearn.preprocessing
 import torch
 from sklearn.impute import SimpleImputer
-from model.lib.TData import TData
+from .TData import TData
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
 import category_encoders

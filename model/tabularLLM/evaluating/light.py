@@ -5,7 +5,7 @@ import math
 from .utils import *
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_curve, auc
-from preprocessing.process_data import preprocess_data
+from ..preprocessing.process_data import preprocess_data
 import os
 
 class FewShotModelTester():

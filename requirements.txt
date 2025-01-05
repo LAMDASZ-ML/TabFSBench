@@ -1,16 +1,18 @@
 accelerate
 argparse
+astropy
 catboost
-dotenv
+category_encoders
+python-dotenv
 faiss-gpu
-json
+simplejson
+kaggle
 lightgbm
-logging
 numpy
 openai
 pandas
 pytorch_tabnet
-scikit-learn
+scikit-learn==1.5.2 # The newest version 1.6 conflicts with XGBoost 2.1.3
 scipy
 tabpfn
 torch
