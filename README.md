@@ -78,7 +78,7 @@ In **example.sh** you can get different kinds of instruction samples.
 
 All the datasets used in TabFSBench are publicly available. You can get them from [OpenML](https://www.openml.org/) or [Kaggle](https://www.kaggle.com/). Also you can directly use them from `./datasets`.
 
-### 📂How to Place Datasets
+### How to Place Datasets
 
 Datasets used in TabFSBench are placed in the project's current directory, corresponding to the file name.
 

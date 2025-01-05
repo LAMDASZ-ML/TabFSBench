@@ -3,17 +3,17 @@ argparse
 astropy
 catboost
 category_encoders
-python-dotenv
 faiss-gpu
-simplejson
 kaggle
 lightgbm
 numpy
 openai
 pandas
+python-dotenv
 pytorch_tabnet
 scikit-learn==1.5.2 # The newest version 1.6 conflicts with XGBoost 2.1.3
 scipy
+simplejson
 tabpfn
 torch
 tqdm

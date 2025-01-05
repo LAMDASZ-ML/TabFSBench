@@ -1,3 +1,0 @@
-1、tabular llm的文件夹要重新调整一下
-2、添加对于tabularllm数据下载的说明
-3、dlmodel调整
