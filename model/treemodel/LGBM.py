@@ -4,13 +4,20 @@ from lightgbm import LGBMClassifier, LGBMRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import accuracy_score, roc_auc_score
 import numpy as np
+import os
+import pandas as pd
+import pickle
 
 
-def CatB(task, train_set, test_sets):
+def LGBM(task, train_set, test_sets):
         metric1_by_model = []
         metric2_by_model = []
-
-        file = "../configs/lightgbm.json"
+        train_set[train_set.columns[train_set.dtypes == 'object']] = train_set.select_dtypes(['object']).apply(
+                lambda x: pd.Categorical(x).codes)
+        test_sets = [df.assign(**{col: pd.Categorical(df[col]).codes for col in df.columns[df.dtypes == 'object']}) for
+                     df in test_sets]
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file = os.path.join(current_dir, "../../configs/lightgbm.json")
         with open(file, 'r') as f:
                 param_grid = json.load(f)
 
@@ -19,8 +26,8 @@ def CatB(task, train_set, test_sets):
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
                 grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
-                model = LGBMClassifier(**best_params)
-                model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
+                downstream = LGBMClassifier(**best_params)
+                downstream.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 for test_set in test_sets:
                         X_test = test_set.iloc[:, :-1]
                         y_test = test_set.iloc[:, -1]
@@ -30,7 +37,6 @@ def CatB(task, train_set, test_sets):
                         roc_auc = roc_auc_score(y_test, y_pred_proba)
                         metric1_by_model.append(accuracy)
                         metric2_by_model.append(roc_auc)
-                return metric1_by_model, metric2_by_model
 
         elif task == 'multiclass':
                 model = LGBMClassifier()
@@ -38,8 +44,8 @@ def CatB(task, train_set, test_sets):
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
                 grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
-                model = LGBMClassifier(**best_params)
-                model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
+                downstream = LGBMClassifier(**best_params)
+                downstream.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 for test_set in test_sets:
                         X_test = test_set.iloc[:, :-1]
                         y_test = test_set.iloc[:, -1]
@@ -49,7 +55,6 @@ def CatB(task, train_set, test_sets):
                         roc_auc = roc_auc_score(y_test, y_pred_proba, multi_class='ovr')
                         metric1_by_model.append(accuracy)
                         metric2_by_model.append(roc_auc)
-                return metric1_by_model, metric2_by_model
 
         elif task == 'regression':
                 model = LGBMRegressor()
@@ -57,8 +62,8 @@ def CatB(task, train_set, test_sets):
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
                 grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_
-                model = LGBMRegressor(**best_params)
-                model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
+                downstream = LGBMRegressor(**best_params)
+                downstream.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 for test_set in test_sets:
                         X_test = test_set.iloc[:, :-1]
                         y_test = test_set.iloc[:, -1]
@@ -66,7 +71,9 @@ def CatB(task, train_set, test_sets):
                         mse = mean_squared_error(y_test, y_pred)
                         rmse = np.sqrt(mse)
                         metric1_by_model.append(rmse)
-                return metric1_by_model, metric2_by_model
+        with open('lightgbm.pkl', 'wb') as f:
+             pickle.dump(downstream, f)
+        return metric1_by_model, metric2_by_model
 
 
 

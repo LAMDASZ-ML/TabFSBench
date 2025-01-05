@@ -6,6 +6,7 @@ import argparse
 import json
 import os
 from model.utils import *
+import math
 
 # model name list
 tree_based_models = [
@@ -36,10 +37,10 @@ deep_learning_models = [
 ]
 
 llms = [
-    'LLaMA3-8B'
+    'Llama3-8B'
 ]
 
-tabular_llms = [
+tabularllms = [
     'TabLLM',
     'UniPredict'
 ]
@@ -53,7 +54,7 @@ def pearson(df, ascending):
     return sorted_columns
 
 def split_dataset(dataset, task, degree):
-    filename = './datasets/' + dataset + '/' + dataset + '.csv'
+    filename = './dataset/' + dataset + '/' + dataset + '.csv'
     df = pd.read_csv(filename)
     train_set, test_set = train_test_split(df, test_size=0.2, random_state=42)
     all_test_sets = []
@@ -61,7 +62,9 @@ def split_dataset(dataset, task, degree):
     all_test_sets.append(test_set) # In Distribution
 
     if task == 'single':
-        sorted_columns = pearson(df, ascending=True)
+        data = df.copy()
+        data[data.columns[data.dtypes == 'object']] = data.select_dtypes(['object']).apply(lambda x: pd.Categorical(x).codes)
+        sorted_columns = pearson(data, ascending=True)
         test = test_set.copy()
         for num in range(1, len(test.columns)):
             if test[sorted_columns[num-1]].dtype == 'object':
@@ -72,7 +75,10 @@ def split_dataset(dataset, task, degree):
                 test[sorted_columns[num-1]] = column_means
             all_test_sets.append(test)
     elif task == 'multi-removeleast':
-        sorted_columns = pearson(df, ascending=True)
+        data = df.copy()
+        data[data.columns[data.dtypes == 'object']] = data.select_dtypes(['object']).apply(
+            lambda x: pd.Categorical(x).codes)
+        sorted_columns = pearson(data, ascending=True)
         test = test_set.copy()
         for num in range(1, len(test.columns)):
             for i in range(0, num):
@@ -84,7 +90,10 @@ def split_dataset(dataset, task, degree):
                     test[sorted_columns[i]] = column_means
             all_test_sets.append(test)
     elif task == 'multi-removemost':
-        sorted_columns = pearson(df, ascending=False)
+        data = df.copy()
+        data[data.columns[data.dtypes == 'object']] = data.select_dtypes(['object']).apply(
+            lambda x: pd.Categorical(x).codes)
+        sorted_columns = pearson(data, ascending=False)
         test = test_set.copy()
         for num in range(1, len(test.columns)):
             for i in range(0, num):
@@ -96,38 +105,43 @@ def split_dataset(dataset, task, degree):
                     test[sorted_columns[i]] = column_means
             all_test_sets.append(test)
     elif task == 'random':
-        part_test_sets = []
         if degree != 'all':
-            degree = int(degree)
-            num = degree * len(df.columns)
-            combinations = list(itertools.combinations(data.columns[:-1], num))
+            degree = float(degree)
+            num = math.floor(degree * len(train_set.columns))
+            combinations = list(itertools.combinations(df.columns[:-1], num))
+            print("combinations are: ", combinations)
+            part_test_sets = []
             for combination in combinations:
-                column_list = train.columns.tolist()
+                test = test_set.copy()
+                column_list = train_set.columns.tolist()
                 for i in combination:
                     index = column_list.index(i)
-                    if test[sorted_columns[index]].dtype == 'object':
-                        mode_value = train_set[sorted_columns[index]].mode()[0]
-                        test[sorted_columns[index]] = mode_value
+                    if test.iloc[:, index].dtype == 'object':
+                        mode_value = train_set.iloc[:, index].mode()[0]
+                        test.iloc[:, index] = mode_value
                     else:
-                        column_means = train_set[sorted_columns[index]].mean()
-                        test[sorted_columns[index]] = column_means
+                        column_means = train_set.iloc[:, index].mean()
+                        test.iloc[:, index] = column_means
                 test = test[df.columns]
                 part_test_sets.append(test)
             part_test_sets = pd.concat(part_test_sets, ignore_index=True)
             all_test_sets.append(part_test_sets)
         else:
-            for num in range(1, len(data.columns)):
-                combinations = list(itertools.combinations(data.columns[:-1], num))
+            for num in range(1, len(df.columns)):
+                part_test_sets = []
+                combinations = list(itertools.combinations(df.columns[:-1], num))
+                print("combinations are: ", combinations)
                 for combination in combinations:
-                    column_list = train.columns.tolist()
+                    test = test_set.copy()
+                    column_list = train_set.columns.tolist()
                     for i in combination:
                         index = column_list.index(i)
-                        if test[sorted_columns[index]].dtype == 'object':
-                            mode_value = train_set[sorted_columns[index]].mode()[0]
-                            test[sorted_columns[index]] = mode_value
+                        if test.iloc[:, index].dtype == 'object':
+                            mode_value = train_set.iloc[:, index].mode()[0]
+                            test.iloc[:, index] = mode_value
                         else:
-                            column_means = train_set[sorted_columns[index]].mean()
-                            test[sorted_columns[index]] = column_means
+                            column_means = train_set.iloc[:, index].mean()
+                            test.iloc[:, index] = column_means
                     test = test[df.columns]
                     part_test_sets.append(test)
                 part_test_sets = pd.concat(part_test_sets, ignore_index=True)
@@ -135,11 +149,11 @@ def split_dataset(dataset, task, degree):
     return train_set, all_test_sets
 
 def evaluate_model(dataset, model, train_set, test_sets):
-    if model in tabular_llm:
+    if model in tabularllms:
         tabular_llm(dataset, model, train_set, test_sets)
-    elif model in llm:
+    elif model in llms:
         llm(dataset, model, train_set, test_sets)
-    elif model in deep_learning_model:
+    elif model in deep_learning_models:
         deep_learning(dataset, model, train_set, test_sets)
     else:
         tree_model(dataset, model, train_set, test_sets)
@@ -165,9 +179,9 @@ if __name__ == "__main__":
                         help="Model Name")
     parser.add_argument('--task', type=str, required=True,
                         help="Task Name")
-    parser.add_argument('--degree', type=str,
+    parser.add_argument('--degree', type=str, default="all",
                         help="Feature Shift Degree")
-    parser.add_argument('--export_dataset', type=bool,
+    parser.add_argument('--export_dataset', type=bool, default=False,
                         help="whether to export the dataset or not")
     args = parser.parse_args()
     dataset = args.dataset

@@ -47,7 +47,7 @@
 Clone this GitHub repository:
 
 ```bash
-git clone https://github.com/LAMDASZ-ML/TabFSBench
+git clone https://github.com/LAMDASZ-ML/TabFSBench.git
 ```
 
 ### 2. Environment setup
@@ -55,7 +55,7 @@ git clone https://github.com/LAMDASZ-ML/TabFSBench
 Create a new Python 3.10 environment and install 'requirements.txt'.
 
 ```bash
-conda create --name yourEnvName python=3.10
+conda create --name tabfsbench python=3.10
 pip install -r requirements.txt
 ```
 ### 3. Run
@@ -127,6 +127,9 @@ You can their details from their papers or **[LAMDA-TALENT](https://github.com/q
 17. **[SwitchTab](https://arxiv.org/abs/2401.02013)**: A self-supervised method tailored for tabular data that improves representation learning through an asymmetric encoder-decoder framework. Following the original paper, our toolkit uses a supervised learning form, optimizing both reconstruction and supervised loss in each epoch.
 18. **[TabPFN](https://arxiv.org/abs/2207.01848)**: A general model which involves the use of pre-trained deep neural networks that can be directly applied to any tabular task.
 
+#### LLMs
+1. **[Llama3-8B](https://huggingface.co/meta-llama/Meta-Llama-3-8B)**: Llama3-8B is released by Meta AI in April 2024. Due to memory limitations, TabFSBench only provides json files for LLM fine-tuning and testing (List Template for Q&A), asking users to use LLM locally.
+
 #### Tabular LLMs
 1. **[TabLLM](https://arxiv.org/abs/2210.10723)**: A framework that leverages LLMs for efficient tabular data classification.
 2. **[UniPredict](https://arxiv.org/abs/2310.03266)**: A framework that firstly trains on multiple datasets to acquire a rich repository of prior knowledge. UniPredict-Light model that TabFSBench used is available at [Google Drive](https://drive.google.com/file/d/1ABsv0C9HSJ9-M3kpkGRIFEw-4ebKdA3h/view?usp=sharing).
@@ -139,7 +142,10 @@ TabFSBench provides two methods to evaluate new model on feature-shift experimen
 2. Import model python file.
    - Add the model in `./model`.
    - Add the method name in the `./model/utils.py`.
-   - Add the parameter settings for the new method in `./configs/[MODEL_NAME].json`
-
+   
 ## Experimental Results
+1. Most models are not robust to feature shifts.
+2. Some models exist to sacrifice performance for better robustness.
+3. Closed-environment performance is roughly linearly related to feature-shift performance.
+
 <img src="./img/id-fs.jpg"  width="1000px">

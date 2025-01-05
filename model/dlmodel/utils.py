@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, roc_auc_score
 import argparse
 import json
 import subprocess
@@ -9,14 +10,16 @@ import itertools
 import random
 from tabpfn import TabPFNClassifier
 from tqdm import tqdm
-from model.utils import (
+from .model.utils import (
     get_deep_args,show_results,tune_hyper_parameters,
     get_method,set_seeds
 )
-from model.lib.data import (
+from .model.lib.data import (
     get_dataset
 )
 import shutil
+from sklearn.model_selection import GridSearchCV
+import pickle
 
 models = [
     'danets',
@@ -45,29 +48,38 @@ tabr_ohe_models = [
 ]
 
 
-def test_model(dataset, model, train_set, test_sets):
+def test_model(dataset, dataset_task, model, train_set, test_sets):
     metric1_by_model = []
     metric2_by_model = []
 
     if model =="TabPFN":
-        file = "../configs/tabpfn.json"
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        file = os.path.join(current_dir, "../../configs/tabpfn.json")
         with open(file, 'r') as f:
             param_grid = json.load(f)
-        model = TabPFNClassifier(device='gpu', N_ensemble_configurations=32)
+        model = TabPFNClassifier(device='cuda', N_ensemble_configurations=32)
         grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-        grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
+        length = min(1024, len(train_set))
+        grid_search.fit(train_set.iloc[:length, :-1], train_set.iloc[:length, -1])
         best_params = grid_search.best_params_
-        model = TabPFNClassifier(**best_params)
-        model.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
+        downstream = TabPFNClassifier(**best_params)
+        downstream.fit(train_set.iloc[:length, :-1], train_set.iloc[:length, -1])
         for test_set in test_sets:
             X_test = test_set.iloc[:, :-1]
             y_test = test_set.iloc[:, -1]
             y_pred = downstream.predict(X_test)
-            y_pred_proba = downstream.predict_proba(X_test)[:, 1]  # 获取正类概率
-            accuracy = accuracy_score(y_test, y_pred)
-            roc_auc = roc_auc_score(y_test, y_pred_proba)
+            if dataset_task=="binary":
+                y_pred_proba = downstream.predict_proba(X_test)[:, 1]
+                accuracy = accuracy_score(y_test, y_pred)
+                roc_auc = roc_auc_score(y_test, y_pred_proba)
+            else:
+                y_pred_proba = downstream.predict_proba(X_test)
+                accuracy = accuracy_score(y_test, y_pred)
+                roc_auc = roc_auc_score(y_test, y_pred_proba, multi_class='ovr')
             metric1_by_model.append(accuracy)
             metric2_by_model.append(roc_auc)
+        with open('tabpfn.pkl', 'wb') as f:
+             pickle.dump(downstream, f)
         return metric1_by_model, metric2_by_model
 
     else:
