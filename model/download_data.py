@@ -4,29 +4,29 @@ import logging
 from tabularLLM.preprocessing.preprocess_kaggle_dataset import preprocess_metadata
 import json
 
-DEFAULT_DATASET_PATH = 'dataset/'
+DEFAULT_DATASET_PATH = '../dataset/'
 
-def get_source_from_json(info_path):
+def get_link_from_json(info_path):
     """
-    Reads the "source" value from a JSON file.
+    Reads the "link" value from a JSON file.
 
     Args:
         info_path (str): The file path to the JSON file.
 
     Returns:
-        str: The value of the "source" key in the JSON file.
+        str: The value of the "link" key in the JSON file.
 
     Raises:
         FileNotFoundError: If the JSON file does not exist.
-        KeyError: If the "source" key is not found in the JSON file.
+        KeyError: If the "link" key is not found in the JSON file.
     """
     try:
         with open(info_path, 'r') as file:
             data = json.load(file)
-            if "source" in data:
-                return data["source"]
+            if "link" in data:
+                return data["link"]
             else:
-                raise KeyError("The key 'source' was not found in the JSON file.")
+                raise KeyError("The key 'link' was not found in the JSON file.")
     except FileNotFoundError as e:
         raise FileNotFoundError(f"The file at path {info_path} was not found.") from e
 
@@ -96,20 +96,13 @@ def preprocess_all_data(dataname):
     DataObject(dataname)
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', 
-                    type=str,
-                    required=True,
-                    help='The name of the folder where you want to download the metadata of your dataset')
+def download_metadata(dataset_name):
+    info_path = DEFAULT_DATASET_PATH + dataset_name + '/info.json'
+    url = get_link_from_json(info_path)
+    data_url = extract_kaggle_path(url)
+    save_dataset_data(dataset_url=data_url,dataname=dataset_name)
+    preprocess_all_metadata(dataname=dataset_name)
+    preprocess_all_data(dataname=dataset_name)
 
-args = parser.parse_args()
-dataset_name = args.dataset_name
 
-info_path = DEFAULT_DATASET_PATH + dataset_name
-
-url = get_source_from_json(info_path)
-data_url = extract_kaggle_path(url)
-save_dataset_data(dataset_url=data_url,dataname=dataset_name)
-preprocess_all_metadata(dataname=dataset_name)
-preprocess_all_data(dataname=dataset_name)
 

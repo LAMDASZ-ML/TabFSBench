@@ -1,0 +1,44 @@
+{
+  "id": "maajdl/yeh-concret-data",
+  "id_no": 31874,
+  "datasetSlugNullable": "yeh-concret-data",
+  "ownerUserNullable": "maajdl",
+  "usabilityRatingNullable": 1.0,
+  "titleNullable": "Revisiting  a Concrete Strength regression",
+  "subtitleNullable": "Predictions sensitivity to the training set (1030 concretes samples)",
+  "descriptionNullable": "#Context\n\n**Abstract**:\n-------------\n\nConcrete is the most important material in civil engineering.    \nThe concrete compressive strength is a highly nonlinear function of age and ingredients.\n\n#Content\n\n\n**Concrete Compressive Strength Data Set**\n------------------------------------------\n\n**Data Set Information:**\n-------------------------\n\nNumber of instances 1030 \nNumber of Attributes\t9 \nAttribute breakdown\t8 quantitative input variables, and 1 quantitative output variable \nMissing Attribute Values\tNone \n\n\n**Attribute Information:**   \n--------------------------\n\nGiven are the variable name, variable type, the measurement unit and a brief description. The concrete compressive strength is the regression problem. The order of this listing corresponds to the order of numerals along the rows of the database. \n\nName -- Data Type -- Measurement -- Description \n\nCement (component 1) -- quantitative -- kg in a m3 mixture -- Input Variable    \nBlast Furnace Slag (component 2) -- quantitative -- kg in a m3 mixture -- Input Variable    \nFly Ash (component 3) -- quantitative -- kg in a m3 mixture -- Input Variable    \nWater (component 4) -- quantitative -- kg in a m3 mixture -- Input Variable    \nSuperplasticizer (component 5) -- quantitative -- kg in a m3 mixture -- Input Variable    \nCoarse Aggregate (component 6) -- quantitative -- kg in a m3 mixture -- Input Variable    \nFine Aggregate (component 7)\t-- quantitative -- kg in a m3 mixture -- Input Variable    \nAge -- quantitative -- Day (1~365) -- Input Variable    \nConcrete compressive strength -- quantitative -- MPa -- Output Variable    \n\n#Acknowledgements\n\n**Source:**\n-----------\n\nOriginal Owner and Donor    \nProf. I-Cheng Yeh    \nDepartment of Information Management    \nChung-Hua University,    \nHsin Chu, Taiwan 30067, R.O.C.    \ne-mail:icyeh '@' chu.edu.tw    \nTEL:886-3-5186511    \n\nDate Donated: August 3, 2007    \n\nFrom:  https://archive.ics.uci.edu/ml/datasets/Concrete+Compressive+Strength\n\n**Relevant Papers:**   \n--------------------\n\n**Main**    \n1)\tI-Cheng Yeh, \"Modeling of strength of high performance concrete using artificial neural networks,\" Cement and Concrete Research, Vol. 28, No. 12, pp. 1797-1808 (1998). \n\n**Others**    \n\n2)\tI-Cheng Yeh, \"Modeling Concrete Strength with Augment-Neuron Networks,\" J. of Materials in Civil Engineering, ASCE, Vol. 10, No. 4, pp. 263-268 (1998).    \n\n3)\tI-Cheng Yeh, \"Design of High Performance Concrete Mixture Using Neural Networks,\" J. of Computing in Civil Engineering, ASCE, Vol. 13, No. 1, pp. 36-42 (1999).    \n\n4)\tI-Cheng Yeh, \"Prediction of Strength of Fly Ash and Slag Concrete By The Use of Artificial Neural Networks,\" Journal of the Chinese Institute of Civil and Hydraulic Engineering, Vol. 15, No. 4, pp. 659-663 (2003).    \n\n5)\tI-Cheng Yeh, \"A mix Proportioning Methodology for Fly Ash and Slag Concrete Using Artificial Neural Networks,\" Chung Hua Journal of Science and Engineering, Vol. 1, No. 1, pp. 77-84 (2003).    \n\n6)\tYeh, I-Cheng, \"Analysis of strength of concrete using design of experiments and neural networks,\" Journal of Materials in Civil Engineering, ASCE, Vol.18, No.4, pp.597-604 (2006).    \n\n\n**Citation Request:**   \n---------------------\n\nNOTE: Reuse of this database is unlimited with retention of copyright notice for Prof. I-Cheng Yeh and the following published paper:    \n\nI-Cheng Yeh, \"Modeling of strength of high performance concrete using artificial neural networks,\" Cement and Concrete Research, Vol. 28, No. 12, pp. 1797-1808 (1998). \n\n#Inspiration\nCan you predict the strength of concrete?",
+  "datasetId": 31874,
+  "datasetSlug": "yeh-concret-data",
+  "hasDatasetSlug": true,
+  "ownerUser": "maajdl",
+  "hasOwnerUser": true,
+  "usabilityRating": 1.0,
+  "hasUsabilityRating": true,
+  "totalViews": 70288,
+  "totalVotes": 137,
+  "totalDownloads": 10371,
+  "title": "Revisiting  a Concrete Strength regression",
+  "hasTitle": true,
+  "subtitle": "Predictions sensitivity to the training set (1030 concretes samples)",
+  "hasSubtitle": true,
+  "description": "#Context\n\n**Abstract**:\n-------------\n\nConcrete is the most important material in civil engineering.    \nThe concrete compressive strength is a highly nonlinear function of age and ingredients.\n\n#Content\n\n\n**Concrete Compressive Strength Data Set**\n------------------------------------------\n\n**Data Set Information:**\n-------------------------\n\nNumber of instances 1030 \nNumber of Attributes\t9 \nAttribute breakdown\t8 quantitative input variables, and 1 quantitative output variable \nMissing Attribute Values\tNone \n\n\n**Attribute Information:**   \n--------------------------\n\nGiven are the variable name, variable type, the measurement unit and a brief description. The concrete compressive strength is the regression problem. The order of this listing corresponds to the order of numerals along the rows of the database. \n\nName -- Data Type -- Measurement -- Description \n\nCement (component 1) -- quantitative -- kg in a m3 mixture -- Input Variable    \nBlast Furnace Slag (component 2) -- quantitative -- kg in a m3 mixture -- Input Variable    \nFly Ash (component 3) -- quantitative -- kg in a m3 mixture -- Input Variable    \nWater (component 4) -- quantitative -- kg in a m3 mixture -- Input Variable    \nSuperplasticizer (component 5) -- quantitative -- kg in a m3 mixture -- Input Variable    \nCoarse Aggregate (component 6) -- quantitative -- kg in a m3 mixture -- Input Variable    \nFine Aggregate (component 7)\t-- quantitative -- kg in a m3 mixture -- Input Variable    \nAge -- quantitative -- Day (1~365) -- Input Variable    \nConcrete compressive strength -- quantitative -- MPa -- Output Variable    \n\n#Acknowledgements\n\n**Source:**\n-----------\n\nOriginal Owner and Donor    \nProf. I-Cheng Yeh    \nDepartment of Information Management    \nChung-Hua University,    \nHsin Chu, Taiwan 30067, R.O.C.    \ne-mail:icyeh '@' chu.edu.tw    \nTEL:886-3-5186511    \n\nDate Donated: August 3, 2007    \n\nFrom:  https://archive.ics.uci.edu/ml/datasets/Concrete+Compressive+Strength\n\n**Relevant Papers:**   \n--------------------\n\n**Main**    \n1)\tI-Cheng Yeh, \"Modeling of strength of high performance concrete using artificial neural networks,\" Cement and Concrete Research, Vol. 28, No. 12, pp. 1797-1808 (1998). \n\n**Others**    \n\n2)\tI-Cheng Yeh, \"Modeling Concrete Strength with Augment-Neuron Networks,\" J. of Materials in Civil Engineering, ASCE, Vol. 10, No. 4, pp. 263-268 (1998).    \n\n3)\tI-Cheng Yeh, \"Design of High Performance Concrete Mixture Using Neural Networks,\" J. of Computing in Civil Engineering, ASCE, Vol. 13, No. 1, pp. 36-42 (1999).    \n\n4)\tI-Cheng Yeh, \"Prediction of Strength of Fly Ash and Slag Concrete By The Use of Artificial Neural Networks,\" Journal of the Chinese Institute of Civil and Hydraulic Engineering, Vol. 15, No. 4, pp. 659-663 (2003).    \n\n5)\tI-Cheng Yeh, \"A mix Proportioning Methodology for Fly Ash and Slag Concrete Using Artificial Neural Networks,\" Chung Hua Journal of Science and Engineering, Vol. 1, No. 1, pp. 77-84 (2003).    \n\n6)\tYeh, I-Cheng, \"Analysis of strength of concrete using design of experiments and neural networks,\" Journal of Materials in Civil Engineering, ASCE, Vol.18, No.4, pp.597-604 (2006).    \n\n\n**Citation Request:**   \n---------------------\n\nNOTE: Reuse of this database is unlimited with retention of copyright notice for Prof. I-Cheng Yeh and the following published paper:    \n\nI-Cheng Yeh, \"Modeling of strength of high performance concrete using artificial neural networks,\" Cement and Concrete Research, Vol. 28, No. 12, pp. 1797-1808 (1998). \n\n#Inspiration\nCan you predict the strength of concrete?",
+  "hasDescription": true,
+  "isPrivate": false,
+  "keywords": [
+    "earth and nature",
+    "science and technology",
+    "random forest",
+    "linear regression",
+    "decision tree",
+    "urban planning"
+  ],
+  "licenses": [
+    {
+      "nameNullable": "other",
+      "name": "other",
+      "hasName": true
+    }
+  ],
+  "collaborators": [],
+  "data": []
+}

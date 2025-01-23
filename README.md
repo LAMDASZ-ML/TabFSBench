@@ -144,8 +144,9 @@ TabFSBench provides two methods to evaluate new model on feature-shift experimen
    - Add the method name in the `./model/utils.py`.
    
 ## Experimental Results
-1. Most models are not robust to feature shifts.
-2. Some models exist to sacrifice performance for better robustness.
-3. Closed-environment performance is roughly linearly related to feature-shift performance.
-
+**1. Most models are not robust to feature shifts.**
+![image-20250123120740238](https://s2.loli.net/2025/01/23/O8cApToUu1gLqBV.png)
+**2. Some models exist to sacrifice performance for better robustness.**\
+**3. Closed-environment performance is roughly linearly related to feature-shift performance.**
 <img src="./img/id-fs.jpg"  width="1000px">
+Model Performance under In Distribution vs. Feature Shift. **In Distribution** means that the dataset does not have any degree of feature shift, i.e., no column missing. **Feature Shift** means average model performance in all degrees of feature shifts.

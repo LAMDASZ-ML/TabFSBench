@@ -8,6 +8,7 @@ from .treemodel.LGBM import *
 from .treemodel.CatB import *
 from .treemodel.XGB import *
 from .dlmodel.utils import *
+from download_data import *
 
 
 THIS_PATH = os.path.dirname(__file__)
@@ -90,13 +91,21 @@ def tabular_llm(dataset, model, train_set, test_sets):
 
     if model == 'TabLLM':
 
+        dataset_metadata_path = "../dataset/"+ dataset +"/dataset-metadata.json"
+        metadata_path = "../dataset/"+ dataset + "/metadata.json"
+
+        # 检查两个文件是否存在
+        if not (os.path.isfile(dataset_metadata_path) and os.path.isfile(metadata_path)):
+            print("Files do not exist, downloading the dataset...")
+            download_metadata(dataset)
+
         tabllm = TabLLM()
 
         # train
         tabllm.train(dataset_name=dataset, train_set=train_set)
 
         # test
-        for i, test_set in enmurate(test_sets):
+        for i, test_set in enumerate(test_sets):
             auc_tab, acc_tab = tabllm.test(dataset_name=dataset, test_set=test_set)
             print(f"Tabllm: test_{i}: acc: {acc_tab}, auc: {auc_tab}\n")
 
@@ -108,7 +117,7 @@ def tabular_llm(dataset, model, train_set, test_sets):
         light.train(dataset_name=dataset, train_set=train_set)
 
         # test
-        for i, test_set in enmurate(test_sets):
+        for i, test_set in enumerate(test_sets):
             auc_light, acc_light = light.test(dataset_name=dataset, test_set=test_set)
             print(f"UniPredict: test_{i}: acc: {acc_light}, auc: {auc_light}\n")
 
