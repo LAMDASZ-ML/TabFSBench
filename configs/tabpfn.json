@@ -1,4 +1,0 @@
-{
-  "device": ["cuda"],
-  "N_ensemble_configurations": [16,32]
-}
