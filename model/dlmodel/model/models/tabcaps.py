@@ -1,12 +1,12 @@
 import torch
 import numpy as np
 from scipy.special import softmax
-from model.lib.tabcaps.lib.utils import PredictDataset
-from model.lib.tabcaps.model.tabcaps_model import TabCapsModel
-from model.lib.tabcaps.lib.multiclass_utils import infer_output_dim, check_output_dim
+from ..lib.tabcaps.lib.utils import PredictDataset
+from ..lib.tabcaps.model.tabcaps_model import TabCapsModel
+from ..lib.tabcaps.lib.multiclass_utils import infer_output_dim, check_output_dim
 from torch.utils.data import DataLoader
 from torch.nn.functional import cross_entropy, mse_loss
-from model.utils import Timer, set_seeds
+from ..utils import Timer, set_seeds
 
 # adapted from https://github.com/WhatAShot/TabCaps
 class TabCapsClassifier(TabCapsModel):

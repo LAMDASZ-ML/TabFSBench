@@ -1,14 +1,14 @@
-from model.methods.base import Method
+from .base import Method
 import time
 import torch
 import os.path as osp
 from tqdm import tqdm
 import numpy as np
-from model.utils import (
+from ..utils import (
     Averager
 )
 from typing import Optional
-from model.lib.data import (
+from ..lib.data import (
     Dataset,
     data_nan_process,
     data_enc_process,

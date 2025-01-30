@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 import torch.nn.functional as F
-import model.lib.danets.sparsemax as sparsemax
+import ..lib.danets.sparsemax as sparsemax
 # Source: https://github.com/WhatAShot/DANet/blob/main/model/DANet.py
 def initialize_glu(module, input_dim, output_dim):
     gain_value = np.sqrt((input_dim + output_dim) / np.sqrt(input_dim))

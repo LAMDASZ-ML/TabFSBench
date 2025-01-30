@@ -1,0 +1,6 @@
+{
+    "num_leaves": [31, 127],
+    "learning_rate": [0.01, 0.1],
+    "min_data_in_leaf": [20, 50, 100],
+    "min_sum_hessian_in_leaf": [0.001, 0.01, 0.1]
+}

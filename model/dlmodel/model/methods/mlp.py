@@ -1,4 +1,4 @@
-from model.methods.base import Method
+from .base import Method
 
 class MLPMethod(Method):
     def __init__(self, args, is_regression):
@@ -6,7 +6,7 @@ class MLPMethod(Method):
         assert(args.cat_policy != 'indices')
 
     def construct_model(self, model_config = None):
-        from model.models.mlp import MLP
+        from ..models.mlp import MLP
         if model_config is None:
             model_config = self.args.config['model']
         self.model = MLP(

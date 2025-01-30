@@ -34,15 +34,15 @@ class Dataset:
 
     @property
     def is_binclass(self) -> bool:
-        return self.info['task_type'] == BINCLASS
+        return self.info['task'] == BINCLASS
 
     @property
     def is_multiclass(self) -> bool:
-        return self.info['task_type'] == MULTICLASS
+        return self.info['task'] == MULTICLASS
 
     @property
     def is_regression(self) -> bool:
-        return self.info['task_type'] == REGRESSION
+        return self.info['task'] == REGRESSION
 
     @property
     def n_num_features(self) -> int:
@@ -204,7 +204,7 @@ def num_enc_process(N_data,num_policy,n_bins=2,y_train=None,is_regression=False,
     :param encoder: Optional[PiecewiseLinearEncoding]
     :return: Tuple[ArrayDict, Optional[PiecewiseLinearEncoding]]
     """
-    from model.lib.num_embeddings import compute_bins,PiecewiseLinearEncoding,UnaryEncoding,JohnsonEncoding,BinsEncoding
+    from ..lib.num_embeddings import compute_bins,PiecewiseLinearEncoding,UnaryEncoding,JohnsonEncoding,BinsEncoding
     if N_data is not None:
         if num_policy == 'none':
             return N_data,None

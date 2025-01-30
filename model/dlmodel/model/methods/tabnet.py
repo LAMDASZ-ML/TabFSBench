@@ -1,9 +1,9 @@
-from model.methods.base import Method
+from .base import Method
 import torch
 import torch
 import torch.nn.functional as F
 
-from model.lib.data import (
+from ..lib.data import (
     Dataset,
     data_nan_process,
     data_enc_process,

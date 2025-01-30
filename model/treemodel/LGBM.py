@@ -17,7 +17,7 @@ def LGBM(task, train_set, test_sets):
         test_sets = [df.assign(**{col: pd.Categorical(df[col]).codes for col in df.columns[df.dtypes == 'object']}) for
                      df in test_sets]
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        file = os.path.join(current_dir, "../../configs/lightgbm.json")
+        file = os.path.join(current_dir, "../../configs/default/lightgbm.json")
         with open(file, 'r') as f:
                 param_grid = json.load(f)
 

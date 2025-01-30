@@ -1,10 +1,10 @@
-from model.methods.base import Method
+from .base import Method
 import time
 import torch
 import os.path as osp
 import numpy as np
 import torch.nn.functional as F
-from model.utils import (
+from ..utils import (
     Averager
 )
 from model.lib.data import (

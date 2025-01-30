@@ -6,14 +6,14 @@ import os.path as osp
 from tqdm import tqdm
 import sklearn.metrics as skm
 
-from model.utils import (
+from ..utils import (
     Timer,
     Averager,
     set_seeds,
     get_device
 )
 
-from model.lib.data import (
+from ..lib.data import (
     Dataset,
     data_nan_process,
     data_enc_process,

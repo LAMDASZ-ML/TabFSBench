@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
-import model.lib.node as node
+import ..lib.node as node
 # adapted from https://github.com/yandex-research/rtdl-revisiting-models/blob/main/bin/node.py
 # %%
 class NODE(nn.Module):

@@ -1,9 +1,9 @@
 import torch
 import numpy as np
 from scipy.special import softmax
-from model.lib.tabnet.utils import SparsePredictDataset, PredictDataset, filter_weights
-from model.lib.tabnet.abstract_model import TabModel
-from model.lib.tabnet.multiclass_utils import infer_output_dim, check_output_dim
+from ..lib.tabnet.utils import SparsePredictDataset, PredictDataset, filter_weights
+from ..lib.tabnet.abstract_model import TabModel
+from ..lib.tabnet.multiclass_utils import infer_output_dim, check_output_dim
 from torch.utils.data import DataLoader
 import scipy
 # adapted from https://github.com/dreamquark-ai/tabnet/blob/develop/pytorch_tabnet/tab_model.py

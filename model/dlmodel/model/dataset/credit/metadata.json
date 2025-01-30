@@ -1,0 +1,6 @@
+{
+    "target": "0",
+    "metadata": "The target of the dataset is 0. \n Features and their explanations: \n    0: Status of existing checking account, in Deutsche Mark. \n    1: Duration in months \n    2: Credit history (credits taken, paid back duly, delays, critical accounts) \n    3: Purpose of the credit (car, television,...) \n    4: Credit amount \n    5: Status of savings account/bonds, in Deutsche Mark. \n    6: Present employment, in number of years. \n    7: Installment rate in percentage of disposable income \n    8: Personal status (married, single,...) and sex \n    9: Other debtors / guarantors \n    10: Present residence since X years \n    11: Property (e.g. real estate) \n    12: Age in years \n    13: Other installment plans (banks, stores) \n    14: Housing (rent, own,...) \n    15: Number of existing credits at this bank \n    16: Job \n    17: Number of people being liable to provide maintenance for \n    18: Telephone (yes,no) \n    19: Foreign worker (yes,no)",
+    "bins": "N/A",
+    "labels": "N/A"
+}

@@ -1,4 +1,4 @@
-from model.methods.base import Method
+from .base import Method
 
 class SNNMethod(Method):
     def __init__(self, args, is_regression):

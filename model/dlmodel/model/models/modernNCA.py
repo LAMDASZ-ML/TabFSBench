@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from model.lib.tabr.utils import make_module
+from ..lib.tabr.utils import make_module
 from typing import Optional, Union
 # the block is initially designed as residual block, however, we find without residual connection, the performance is still good
 # so we remove the residual connection

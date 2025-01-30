@@ -1,11 +1,11 @@
-from model.methods.base import Method
+from .base import Method
 import argparse
 import torch
 from tqdm import tqdm
 import numpy as np
 import torch
 
-from model.lib.data import (
+from ..lib.data import (
     Dataset
 )
 import time

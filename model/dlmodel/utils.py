@@ -54,7 +54,7 @@ def test_model(dataset, dataset_task, model, train_set, test_sets):
 
     if model =="TabPFN":
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        file = os.path.join(current_dir, "../../configs/tabpfn.json")
+        file = os.path.join(current_dir, "../../configs/default/tabpfn.json")
         with open(file, 'r') as f:
             param_grid = json.load(f)
         model = TabPFNClassifier(device='cuda', N_ensemble_configurations=32)
@@ -83,10 +83,10 @@ def test_model(dataset, dataset_task, model, train_set, test_sets):
         return metric1_by_model, metric2_by_model
 
     else:
-        preprocessing(train_set, type="train")
-
+        preprocessing(dataset, train_set, type="train")
+        preprocessing(dataset, test_sets[0], type="test")
         loss_list, results_list, time_list = [], [], []
-        args, default_para, opt_space = get_deep_args()
+        args, default_para, opt_space = get_deep_args(dataset, model)
         train_val_data, test_data, info = get_dataset(args.dataset, args.dataset_path)
         if args.tune:
             args = tune_hyper_parameters(args, opt_space, train_val_data, info)
@@ -94,8 +94,8 @@ def test_model(dataset, dataset_task, model, train_set, test_sets):
         time_cost = method.fit(train_val_data, info)
 
         for test_set in test_sets:
-            preprocessing(test_set, type="test")
-
+            preprocessing(dataset, test_set, type="test")
+            train_val_data, test_data, info = get_dataset(args.dataset, args.dataset_path)
             vl, vres, metric_name, predict_logits = method.predict(test_data, info, model_name=args.evaluate_option)
             loss_list.append(vl)
             results_list.append(vres)
@@ -106,11 +106,13 @@ def test_model(dataset, dataset_task, model, train_set, test_sets):
 
     return metric1_by_model, metric2_by_model
 
-def preprocessing(data, type):
-    X, y = train_test_split(data, test_size=0.2, random_state=42)
+def preprocessing(dataset, data, type):
+    X = data.iloc[:, :-1]
+    y = data.iloc[:, -1]
     number = X.select_dtypes(exclude=['object'])
     category = X.select_dtypes(include=['object'])
-    newfile = './dataset/' + dataset + '/'
+    newfile = './model/dlmodel/model/dataset/' + dataset + '/'
+
     if type == "train":
         if number.shape[1] != 0:
             np.save(newfile + 'N_train.npy', number)
@@ -143,7 +145,7 @@ def preprocessing(data, type):
                 os.remove(newfile + 'C_test.npy')
         np.save(newfile + 'y_test.npy', y)
 
-    json_file = './dataset/' + dataset + '/info.json'
+    json_file = './model/dlmodel/model/dataset/' + dataset + '/info.json'
     with open(json_file, 'r') as file:
         info = json.load(file)
     info['n_num_features'] = number.shape[1]

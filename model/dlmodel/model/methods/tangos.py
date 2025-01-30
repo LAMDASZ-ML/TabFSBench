@@ -1,4 +1,4 @@
-from model.methods.base import Method
+from .base import Method
 import torch
 
 from model.utils import (

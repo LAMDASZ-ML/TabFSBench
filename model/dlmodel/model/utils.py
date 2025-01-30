@@ -8,6 +8,7 @@ import numpy as np
 import random
 import json
 import os.path as osp
+import sys
 
 
 THIS_PATH = os.path.dirname(__file__)
@@ -320,7 +321,7 @@ def get_classical_args():
     args.config['fit']['n_bins'] = args.n_bins
     return args,default_para,opt_space   
 
-def get_deep_args():  
+def get_deep_args(dataset, model):
     """
     Get the arguments for deep learning models.
 
@@ -330,9 +331,23 @@ def get_deep_args():
     import warnings
     warnings.filterwarnings("ignore")
 
+    if '--dataset' in sys.argv:
+        index = sys.argv.index('--dataset')
+        del sys.argv[index]
+        del sys.argv[index]
+    if '--model' in sys.argv:
+        index = sys.argv.index('--model')
+        del sys.argv[index]
+        del sys.argv[index]
+    if '--task' in sys.argv:
+        index = sys.argv.index('--task')
+        del sys.argv[index]
+        del sys.argv[index]
+    sys.argv.extend(['--dataset', dataset, '--dataset_path', './dlmodel/model/dataset', '--max_epoch', '3', '--seed_num', '3', '--model_type', model, '--gpu', '0'])
+
     parser = argparse.ArgumentParser()
     # basic parameters
-    with open('configs/deep_configs.json','r') as file:
+    with open('model/dlmodel/configs/deep_configs.json','r') as file:
         default_args = json.load(file)
     parser.add_argument('--dataset', type=str, default=default_args['dataset'])
     parser.add_argument('--model_type', type=str, 
@@ -385,8 +400,8 @@ def get_deep_args():
     mkdir(args.save_path)    
     
     # load config parameters
-    config_default_path = os.path.join('configs','default',args.model_type+'.json')
-    config_opt_path = os.path.join('configs','opt_space',args.model_type+'.json')
+    config_default_path = os.path.join('./model/dlmodel/configs','default',args.model_type+'.json')
+    config_opt_path = os.path.join('./model/dlmodel/configs','opt_space',args.model_type+'.json')
     with open(config_default_path,'r') as file:
         default_para = json.load(file)  
     
@@ -718,59 +733,64 @@ def get_method(model):
     :model: str, model name
     :return: class, method class
     """
+
+    project_root = "./dlmodel/model"
+    if project_root not in sys.path:
+        sys.path.append(project_root)
+
     if model == "mlp":
-        from model.methods.mlp import MLPMethod
+        from .methods.mlp import MLPMethod
         return MLPMethod
     elif model == 'resnet':
-        from model.methods.resnet import ResNetMethod
+        from .methods.resnet import ResNetMethod
         return ResNetMethod
     elif model == 'node':
-        from model.methods.node import NodeMethod
+        from .methods.node import NodeMethod
         return NodeMethod
     elif model == 'ftt':
-        from model.methods.ftt import FTTMethod
+        from .methods.ftt import FTTMethod
         return FTTMethod
     elif model == 'tabpfn':
-        from model.methods.tabpfn import TabPFNMethod
+        from .methods.tabpfn import TabPFNMethod
         return TabPFNMethod
     elif model == 'tabr':
-        from model.methods.tabr import TabRMethod
+        from .methods.tabr import TabRMethod
         return TabRMethod
     elif model == 'modernNCA':
-        from model.methods.modernNCA import ModernNCAMethod
+        from .methods.modernNCA import ModernNCAMethod
         return ModernNCAMethod
     elif model == 'tabcaps':
-        from model.methods.tabcaps import TabCapsMethod
+        from .methods.tabcaps import TabCapsMethod
         return TabCapsMethod
     elif model == 'tabnet':
-        from model.methods.tabnet import TabNetMethod
+        from .methods.tabnet import TabNetMethod
         return TabNetMethod
     elif model == 'saint':
-        from model.methods.saint import SaintMethod
+        from .methods.saint import SaintMethod
         return SaintMethod
     elif model == 'tangos':
-        from model.methods.tangos import TangosMethod
+        from .methods.tangos import TangosMethod
         return TangosMethod    
     elif model == 'snn':
-        from model.methods.snn import SNNMethod
+        from .methods.snn import SNNMethod
         return SNNMethod
     elif model == 'danets':
-        from model.methods.danets import DANetsMethod
+        from .methods.danets import DANetsMethod
         return DANetsMethod
     elif model == 'dcn2':
-        from model.methods.dcn2 import DCN2Method
+        from .methods.dcn2 import DCN2Method
         return DCN2Method
     elif model == 'tabtransformer':
-        from model.methods.tabtransformer import TabTransformerMethod
+        from .methods.tabtransformer import TabTransformerMethod
         return TabTransformerMethod
     elif model == 'grownet':
-        from model.methods.grownet import GrowNetMethod
+        from .methods.grownet import GrowNetMethod
         return GrowNetMethod
     elif model == 'autoint':
-        from model.methods.autoint import AutoIntMethod
+        from .methods.autoint import AutoIntMethod
         return AutoIntMethod
     elif model == 'switchtab':
-        from model.methods.switchtab import SwitchTabMethod
+        from .methods.switchtab import SwitchTabMethod
         return SwitchTabMethod
     else:
         raise NotImplementedError("Model \"" + model + "\" not yet implemented")

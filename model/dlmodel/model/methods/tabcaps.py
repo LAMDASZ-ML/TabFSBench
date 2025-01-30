@@ -1,11 +1,11 @@
-from model.methods.base import Method
+from .base import Method
 import torch
 import torch
 import os.path as osp
 import torch.nn.functional as F
 import numpy as np
 
-from model.lib.data import (
+from ..lib.data import (
     Dataset,
     data_nan_process,
     data_enc_process,
