@@ -132,7 +132,7 @@ You can their details from their papers or **[LAMDA-TALENT](https://github.com/q
 
 #### Tabular LLMs
 1. **[TabLLM](https://arxiv.org/abs/2210.10723)**: A framework that leverages LLMs for efficient tabular data classification.
-2. **[UniPredict](https://arxiv.org/abs/2310.03266)**: A framework that firstly trains on multiple datasets to acquire a rich repository of prior knowledge. UniPredict-Light model that TabFSBench used is available at [Google Drive](https://drive.google.com/file/d/1ABsv0C9HSJ9-M3kpkGRIFEw-4ebKdA3h/view?usp=sharing).
+2. **[UniPredict](https://arxiv.org/abs/2310.03266)**: A framework that firstly trains on multiple datasets to acquire a rich repository of prior knowledge. UniPredict-Light model that TabFSBench used is available at [Google Drive](https://drive.google.com/file/d/1ABsv0C9HSJ9-M3kpkGRIFEw-4ebKdA3h/view?usp=sharing). After downloading the model, place it in `Tabular-Bench/model/tabularLLM/files/unified/models` and rename it to `light_state.pt`.
 
 ### How to Add New Models
 
@@ -144,9 +144,14 @@ TabFSBench provides two methods to evaluate new model on feature-shift experimen
    - Add the method name in the `./model/utils.py`.
    
 ## Experimental Results
-**1. Most models are not robust to feature shifts.**
-![image-20250123120740238](https://s2.loli.net/2025/01/23/O8cApToUu1gLqBV.png)
-**2. Some models exist to sacrifice performance for better robustness.**\
-**3. Closed-environment performance is roughly linearly related to feature-shift performance.**
+**1. Most models have the limited applicability in feature-shift scenarios.**
+<img src="./img/table3.png"  width="1000px">
+
+**2. Shifted features’ importance has a linear trend with model performance degradation.**
+<img src="./img/decrease_sum.png"  width="1000px">
+We use $\Delta$ (described in equation $\Delta  = \frac{(metric_i- metric_0 )}{metric_0}$) to measure the performance decrease. Sum of shifted feature set's correlations refers to the sum of Pearson correlation coefficients of shifted features. Notably, performance decrease and sum of shifted feature set's correlations demonstrate a strong correlation, with a Pearson correlation coefficient of $\rho$ = 0.7405.
+
+**3. Model closed-environment performance correlates with feature-shift performance.**
 <img src="./img/id-fs.jpg"  width="1000px">
 Model Performance under In Distribution vs. Feature Shift. **In Distribution** means that the dataset does not have any degree of feature shift, i.e., no column missing. **Feature Shift** means average model performance in all degrees of feature shifts.
+

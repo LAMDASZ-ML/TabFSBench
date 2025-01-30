@@ -94,10 +94,9 @@ def tabular_llm(dataset, model, train_set, test_sets):
         dataset_metadata_path = "../dataset/"+ dataset +"/dataset-metadata.json"
         metadata_path = "../dataset/"+ dataset + "/metadata.json"
 
-        # 检查两个文件是否存在
-        if not (os.path.isfile(dataset_metadata_path) and os.path.isfile(metadata_path)):
-            print("Files do not exist, downloading the dataset...")
-            download_metadata(dataset)
+        # if not (os.path.isfile(dataset_metadata_path) and os.path.isfile(metadata_path)):
+        #     print("Files do not exist, downloading the dataset...")
+        #     download_metadata(dataset)
 
         tabllm = TabLLM()
 

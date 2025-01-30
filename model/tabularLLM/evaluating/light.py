@@ -12,7 +12,7 @@ class FewShotModelTester():
     def __init__(
         self, 
         name, 
-        model='unipred_state.pt',
+        model='light_state.pt',
         model_path=DEFAULT_MODEL_PATH,
         path=DEFAULT_DATASET_SAVING_PATH,
         output_type='Default', 
