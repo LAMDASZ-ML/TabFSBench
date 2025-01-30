@@ -8,7 +8,7 @@ from .treemodel.LGBM import *
 from .treemodel.CatB import *
 from .treemodel.XGB import *
 from .dlmodel.utils import *
-from download_data import *
+from .download_data import *
 
 
 THIS_PATH = os.path.dirname(__file__)
@@ -94,9 +94,9 @@ def tabular_llm(dataset, model, train_set, test_sets):
         dataset_metadata_path = "../dataset/"+ dataset +"/dataset-metadata.json"
         metadata_path = "../dataset/"+ dataset + "/metadata.json"
 
-        # if not (os.path.isfile(dataset_metadata_path) and os.path.isfile(metadata_path)):
-        #     print("Files do not exist, downloading the dataset...")
-        #     download_metadata(dataset)
+        if not (os.path.isfile(dataset_metadata_path) and os.path.isfile(metadata_path)):
+            print("Files do not exist, downloading the dataset...")
+            download_metadata(dataset)
 
         tabllm = TabLLM()
 

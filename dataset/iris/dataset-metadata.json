@@ -1,0 +1,50 @@
+{
+  "id": "/iris",
+  "id_no": 19,
+  "datasetSlugNullable": "iris",
+  "ownerUserNullable": null,
+  "usabilityRatingNullable": 0.7941176470588235,
+  "titleNullable": "Iris Species",
+  "subtitleNullable": "Classify iris plants into three species in this classic dataset",
+  "descriptionNullable": "The Iris dataset was used in R.A. Fisher's classic 1936 paper, [The Use of Multiple Measurements in Taxonomic Problems](http://rcs.chemometrics.ru/Tutorials/classification/Fisher.pdf), and can also be found on the [UCI Machine Learning Repository][1].\n\nIt includes three iris species with 50 samples each as well as some properties about each flower. One flower species is linearly separable from the other two, but the other two are not linearly separable from each other.\n\nThe columns in this dataset are:\n\n - Id\n - SepalLengthCm\n - SepalWidthCm\n - PetalLengthCm\n - PetalWidthCm\n - Species\n\n[![Sepal Width vs. Sepal Length](https://www.kaggle.io/svf/138327/e401fb2cc596451b1e4d025aaacda95f/sepalWidthvsLength.png)](https://www.kaggle.com/benhamner/d/uciml/iris/sepal-width-vs-length)\n\n\n  [1]: http://archive.ics.uci.edu/ml/",
+  "datasetId": 19,
+  "datasetSlug": "iris",
+  "hasDatasetSlug": true,
+  "ownerUser": "",
+  "hasOwnerUser": false,
+  "usabilityRating": 0.7941176470588235,
+  "hasUsabilityRating": true,
+  "totalViews": 2327953,
+  "totalVotes": 4086,
+  "totalDownloads": 643599,
+  "title": "Iris Species",
+  "hasTitle": true,
+  "subtitle": "Classify iris plants into three species in this classic dataset",
+  "hasSubtitle": true,
+  "description": "The Iris dataset was used in R.A. Fisher's classic 1936 paper, [The Use of Multiple Measurements in Taxonomic Problems](http://rcs.chemometrics.ru/Tutorials/classification/Fisher.pdf), and can also be found on the [UCI Machine Learning Repository][1].\n\nIt includes three iris species with 50 samples each as well as some properties about each flower. One flower species is linearly separable from the other two, but the other two are not linearly separable from each other.\n\nThe columns in this dataset are:\n\n - Id\n - SepalLengthCm\n - SepalWidthCm\n - PetalLengthCm\n - PetalWidthCm\n - Species\n\n[![Sepal Width vs. Sepal Length](https://www.kaggle.io/svf/138327/e401fb2cc596451b1e4d025aaacda95f/sepalWidthvsLength.png)](https://www.kaggle.com/benhamner/d/uciml/iris/sepal-width-vs-length)\n\n\n  [1]: http://archive.ics.uci.edu/ml/",
+  "hasDescription": true,
+  "isPrivate": false,
+  "keywords": [
+    "biology"
+  ],
+  "licenses": [
+    {
+      "nameNullable": "CC0-1.0",
+      "name": "CC0-1.0",
+      "hasName": true
+    }
+  ],
+  "collaborators": [
+    {
+      "usernameNullable": "kaggleteam",
+      "groupSlugNullable": null,
+      "username": "kaggleteam",
+      "hasUsername": true,
+      "groupSlug": "",
+      "hasGroupSlug": false,
+      "role": "admin",
+      "collaboratorTypeCase": "username"
+    }
+  ],
+  "data": []
+}

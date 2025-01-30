@@ -152,6 +152,5 @@ TabFSBench provides two methods to evaluate new model on feature-shift experimen
 We use $\Delta$ (described in equation~\ref{delta_equation}) to measure the model performance Gap $Delta$. Sum of shifted feature set's correlations refers to the sum of Pearson correlation coefficients of shifted features. Notably, model performance Gap $Delta$ and sum of shifted feature set's correlations demonstrate a strong correlation, with a Pearson correlation coefficient of $\rho$ = 0.7405.
 
 **3. Model closed-environment performance correlates with feature-shift performance.**
-<img src="./img/id-fs.jpg"  width="1000px">
-Model Performance under In Distribution vs. Feature Shift. **In Distribution** means that the dataset does not have any degree of feature shift, i.e., no column missing. **Feature Shift** means average model performance in all degrees of feature shifts.
-
+<img src="./img/figure4.png"  width="1000px">
+Model closed-environment performance vs. model feature-shift performance. \textbf{Closed-environment} means that the dataset does not have any degree of feature shift. \textbf{Feature-shift} means average model performance in all degrees of feature shifts.

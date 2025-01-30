@@ -1,10 +1,10 @@
-from tabularLLM.preprocessing.preprocess_kaggle_dataset import *
+from .tabularLLM.preprocessing.preprocess_kaggle_dataset import *
 import argparse
 import logging
-from tabularLLM.preprocessing.preprocess_kaggle_dataset import preprocess_metadata
+from .tabularLLM.preprocessing.preprocess_kaggle_dataset import preprocess_metadata
 import json
 
-DEFAULT_DATASET_PATH = '../dataset/'
+DEFAULT_DATASET_PATH = './dataset/'
 
 def get_link_from_json(info_path):
     """
