@@ -12,12 +12,12 @@
 
 ## Introduction
 
-**TabFSBench** is a benchmarking tool for feature shifts in tabular data in open-environment scenarios. It aims to analyse the robustness of a model in the face of feature shifts, i.e. how well the model performs when the number or meaning of features.
+**TabFSBench** is a benchmarking tool for feature shifts in tabular data in open-environment scenarios. It aims to analyse the performance and robustness of a model in feature shifts.
 
 **TabFSBench** offers the following advantages:
 
-- **Various Models**: Includes tree-based models, deep learning models and tabular LLMs.
-- **Diverse Experiments**: Single-column missing, multi-columns(remove least/most relevance) and remove randomly.
+- **Various Models**: Tree-based models, deep-learning models, LLMs and tabular LLMs.
+- **Diverse Experiments**: Single shift, most/least-revelant shift and random shift.
 - **Exportable Datasets**: Be able to export the feature-shift version of the given dataset.
 - **Addable Components**: Supports to add new datasets and models, and export the given dataset under the specific experiment.
 
@@ -42,13 +42,13 @@
 
 ## Quickstart
 
-### 1. Clone
+### 1. Download
 
-Clone this GitHub repository:
+Download this GitHub repository.
 
-```bash
-git clone https://github.com/LAMDASZ-ML/TabFSBench.git
-```
+[//]: # (```bash)
+[//]: # (git clone https://github.com/LAMDASZ-ML/TabFSBench.git)
+[//]: # (```)
 
 ### 2. Environment setup
 
@@ -63,11 +63,11 @@ You need to input four parameters to use TabFSBench. There are dataset, model, t
 
 **dataset** and **model**: input the full name. 
 
-**task**: You can choose 'single', 'multi-removeleast', 'multi-removemost' or 'random' as TaskName.
+**task**: You can choose 'single', 'least', 'most' or 'random' as TaskName.
 
 **degree**: Degree refers to the number of missing columns as a percentage of the total number of columns in the dataset, in the range 0-1. If you want to see the performance of the model at all missing degrees, set Degree to 'all'.
 
-**export_dataset**: Whether to export the dataset or not.
+**export_dataset**: Whether to export the dataset or not. Default is 'False'.
 ```bash
     python run_experiment.py --dataset DatasetName --model ModelName --task TaskName --degree Degree --export_dataset True/False
 ```
@@ -78,7 +78,7 @@ In **example.sh** you can get different kinds of instruction samples.
 
 All the datasets used in TabFSBench are publicly available. You can get them from [OpenML](https://www.openml.org/) or [Kaggle](https://www.kaggle.com/). Also you can directly use them from `./datasets`.
 
-### 📂How to Place Datasets
+### How to Place Datasets
 
 Datasets used in TabFSBench are placed in the project's current directory, corresponding to the file name.
 
