@@ -153,4 +153,4 @@ We use $\Delta$ (described in equation~\ref{delta_equation}) to measure the mode
 
 **3. Model closed-environment performance correlates with feature-shift performance.**
 <img src="./img/figure4.png"  width="1000px">
-Model closed-environment performance vs. model feature-shift performance. \textbf{Closed-environment} means that the dataset does not have any degree of feature shift. \textbf{Feature-shift} means average model performance in all degrees of feature shifts.
+Model closed-environment performance vs. model feature-shift performance. Closed-environment means that the dataset does not have any degree of feature shift. Feature-shift means average model performance in all degrees of feature shifts.
