@@ -149,7 +149,7 @@ TabFSBench provides two methods to evaluate new model on feature-shift experimen
 
 **2. Shifted features’ importance has a linear trend with model performance degradation.**
 <img src="./img/decrease_sum.png"  width="1000px">
-We use $\Delta$ (described in equation $\Delta  = \frac{(metric_i- metric_0 )}{metric_0}$) to measure the performance decrease. Sum of shifted feature set's correlations refers to the sum of Pearson correlation coefficients of shifted features. Notably, performance decrease and sum of shifted feature set's correlations demonstrate a strong correlation, with a Pearson correlation coefficient of $\rho$ = 0.7405.
+We use $\Delta$ (described in equation~\ref{delta_equation}) to measure the model performance Gap $Delta$. Sum of shifted feature set's correlations refers to the sum of Pearson correlation coefficients of shifted features. Notably, model performance Gap $Delta$ and sum of shifted feature set's correlations demonstrate a strong correlation, with a Pearson correlation coefficient of $\rho$ = 0.7405.
 
 **3. Model closed-environment performance correlates with feature-shift performance.**
 <img src="./img/id-fs.jpg"  width="1000px">
