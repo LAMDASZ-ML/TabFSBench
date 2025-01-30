@@ -73,7 +73,7 @@ def split_dataset(dataset, task, degree):
                 column_means = train_set[sorted_columns[num-1]].mean()
                 test[sorted_columns[num-1]] = column_means
             all_test_sets.append(test)
-    elif task == 'multi-removeleast':
+    elif task == 'least':
         data = df.copy()
         data[data.columns[data.dtypes == 'object']] = data.select_dtypes(['object']).apply(
             lambda x: pd.Categorical(x).codes)
@@ -88,7 +88,7 @@ def split_dataset(dataset, task, degree):
                     column_means = train_set[sorted_columns[i]].mean()
                     test[sorted_columns[i]] = column_means
             all_test_sets.append(test)
-    elif task == 'multi-removemost':
+    elif task == 'most':
         data = df.copy()
         data[data.columns[data.dtypes == 'object']] = data.select_dtypes(['object']).apply(
             lambda x: pd.Categorical(x).codes)
