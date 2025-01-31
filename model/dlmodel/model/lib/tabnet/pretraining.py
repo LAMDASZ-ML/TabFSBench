@@ -2,7 +2,7 @@ import torch
 import numpy as np
 from torch.utils.data import DataLoader
 import tab_network
-from model.tabnet.utils import (
+from ..tabnet.utils import (
     create_explain_matrix,
     filter_weights,
     SparsePredictDataset,
@@ -11,16 +11,16 @@ from model.tabnet.utils import (
     create_group_matrix,
 )
 from torch.nn.utils import clip_grad_norm_
-from model.tabnet.pretraining_utils import (
+from ..tabnet.pretraining_utils import (
     create_dataloaders,
     validate_eval_set,
 )
-from model.tabnet.metrics import (
+from ..tabnet.metrics import (
     UnsupMetricContainer,
     check_metrics,
     UnsupervisedLoss,
 )
-from model.tabnet.abstract_model import TabModel
+from ..tabnet.abstract_model import TabModel
 import scipy
 
 

@@ -1,4 +1,5 @@
 {
     "task": "multiclass",
-    "link": "https://www.openml.org/search?type=data\\&status=active\\&id=45021"
+    "link": "https://www.openml.org/search?type=data\\&status=active\\&id=45021",
+        "num_classes": [4]
 }

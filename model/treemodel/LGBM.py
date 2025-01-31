@@ -40,7 +40,7 @@ def LGBM(task, train_set, test_sets):
 
         elif task == 'multiclass':
                 model = LGBMClassifier()
-                param_grid['num_classes'] = 3
+                # param_grid['num_classes'] = 3
                 grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
                 grid_search.fit(train_set.iloc[:, :-1], train_set.iloc[:, -1])
                 best_params = grid_search.best_params_

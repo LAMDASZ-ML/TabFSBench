@@ -3,10 +3,10 @@ from .base import Method
 class DANetsMethod(Method):
     def __init__(self, args, is_regression):
         super().__init__(args, is_regression)
-        assert(args.cat_policy != 'indices')
+        # assert(args.cat_policy != 'indices')
 
     def construct_model(self, model_config = None):
-        from model.models.danets import DANet
+        from ..models.danets import DANet
         if model_config is None:
             model_config = self.args.config['model']
         self.model = DANet(
@@ -16,7 +16,7 @@ class DANetsMethod(Method):
             k=self.args.config['general']['k'],
             **model_config
             ).to(self.args.device)
-        from model.lib.danets.AcceleratedModule import AcceleratedCreator
+        from ..lib.danets.AcceleratedModule import AcceleratedCreator
         accelerated_module = AcceleratedCreator(self.d_in, base_out_dim=model_config["base_outdim"], k=self.args.config['general']['k'])
         self.model = accelerated_module(self.model)
         self.model.double()

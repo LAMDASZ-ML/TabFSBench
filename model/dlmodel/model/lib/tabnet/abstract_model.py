@@ -6,8 +6,8 @@ from torch.nn.utils import clip_grad_norm_
 import numpy as np
 from scipy.sparse import csc_matrix
 from abc import abstractmethod
-from model.lib.tabnet import tab_network
-from model.lib.tabnet.utils import (
+from ..tabnet import tab_network
+from ..tabnet.utils import (
     SparsePredictDataset,
     PredictDataset,
     create_explain_matrix,
@@ -20,13 +20,13 @@ from model.lib.tabnet.utils import (
     create_group_matrix,
     check_embedding_parameters
 )
-from model.lib.tabnet.callbacks import (
+from ..tabnet.callbacks import (
     CallbackContainer,
     History,
     EarlyStopping,
     LRSchedulerCallback,
 )
-from model.lib.tabnet.metrics import MetricContainer, check_metrics
+from ..tabnet.metrics import MetricContainer, check_metrics
 from sklearn.base import BaseEstimator
 
 from torch.utils.data import DataLoader

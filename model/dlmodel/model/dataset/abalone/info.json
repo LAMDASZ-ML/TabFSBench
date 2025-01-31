@@ -1,4 +1,1 @@
-{
-    "task": "regression",
-    "link": "https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset"
-}
+{"task": "regression", "link": "https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset", "n_num_features": 7, "n_cat_features": 1}

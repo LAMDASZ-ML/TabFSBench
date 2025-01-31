@@ -1,4 +1,5 @@
 {
     "task": "multiclass",
-    "link": "https://www.kaggle.com/datasets/youssefaboelwafa/clustering-penguins-species"
+    "link": "https://www.kaggle.com/datasets/youssefaboelwafa/clustering-penguins-species",
+        "num_classes": [3]
 }

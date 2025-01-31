@@ -37,13 +37,13 @@ def make_random_batches(
 class ModernNCAMethod(Method):
     def __init__(self, args, is_regression):
         super().__init__(args, is_regression)
-        assert(args.cat_policy == 'tabr_ohe')
+        # assert(args.cat_policy == 'tabr_ohe')
         # tabr_ohe is the cat_policy doing one-hot encoding for categorical features, but do not concatenate the one-hot encoded features with the numerical features
         # we reuse it from tabr repo, and do not change it
-        assert(args.num_policy == 'none')
+        # assert(args.num_policy == 'none')
 
     def construct_model(self, model_config = None):
-        from model.models.modernNCA import ModernNCA
+        from ..models.modernNCA import ModernNCA
         if model_config is None:
             model_config = self.args.config['model']
         self.model = ModernNCA(

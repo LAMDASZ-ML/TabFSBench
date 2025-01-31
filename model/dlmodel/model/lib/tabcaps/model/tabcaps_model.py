@@ -5,26 +5,26 @@ import pandas as pd
 from sklearn.metrics import accuracy_score
 import torch.nn.functional as F
 from torch.nn.parallel import DataParallel
-from model.lib.tabcaps.lib.utils import FastTensorDataLoader
+from ..lib.utils import FastTensorDataLoader
 from qhoptim.pyt import QHAdam
 import numpy as np
 from abc import abstractmethod
-from model.lib.tabcaps.lib.utils import (
+from ..lib.utils import (
     PredictDataset,
     validate_eval_set,
     create_dataloaders,
     define_device,
 )
-from model.lib.tabcaps.lib.callbacks import (
+from ..lib.callbacks import (
     CallbackContainer,
     History,
     EarlyStopping,
     LRSchedulerCallback
 )
-from model.lib.tabcaps.lib.logger import Train_Log
-from model.lib.tabcaps.lib.metrics import MetricContainer, check_metrics
-from model.lib.tabcaps.model.capsule_loss import MarginLoss
-from model.lib.tabcaps.model.tab_capsulenet import CapsuleClassifier, ReconstructCapsNet
+from ..lib.logger import Train_Log
+from ..lib.metrics import MetricContainer, check_metrics
+from ..model.capsule_loss import MarginLoss
+from ..model.tab_capsulenet import CapsuleClassifier, ReconstructCapsNet
 from sklearn.base import BaseEstimator
 from sklearn.utils import check_array
 

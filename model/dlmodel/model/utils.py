@@ -343,6 +343,14 @@ def get_deep_args(dataset, model):
         index = sys.argv.index('--task')
         del sys.argv[index]
         del sys.argv[index]
+    if '--degree' in sys.argv:
+        index = sys.argv.index('--degree')
+        del sys.argv[index]
+        del sys.argv[index]
+    if '--export_dataset' in sys.argv:
+        index = sys.argv.index('--export_dataset')
+        del sys.argv[index]
+        del sys.argv[index]
     sys.argv.extend(['--dataset', dataset, '--dataset_path', './dlmodel/model/dataset', '--max_epoch', '3', '--seed_num', '3', '--model_type', model, '--gpu', '0'])
 
     parser = argparse.ArgumentParser()

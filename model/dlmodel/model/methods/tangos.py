@@ -1,17 +1,17 @@
 from .base import Method
 import torch
 
-from model.utils import (
+from ..utils import (
     Averager
 )
 
 class TangosMethod(Method):
     def __init__(self, args, is_regression):
         super().__init__(args, is_regression)
-        assert(args.cat_policy != 'indices')
+        # assert(args.cat_policy != 'indices')
 
     def construct_model(self, model_config = None):
-        from model.models.tangos import Tangos
+        from ..models.tangos import Tangos
         if model_config is None:
             model_config = self.args.config['model']
         self.model = Tangos(

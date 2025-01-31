@@ -64,8 +64,8 @@ def split_dataset(dataset, task, degree):
         data = df.copy()
         data[data.columns[data.dtypes == 'object']] = data.select_dtypes(['object']).apply(lambda x: pd.Categorical(x).codes)
         sorted_columns = pearson(data, ascending=True)
-        test = test_set.copy()
-        for num in range(1, len(test.columns)):
+        for num in range(1, len(test_set.columns)):
+            test = test_set.copy()
             if test[sorted_columns[num-1]].dtype == 'object':
                 mode_value = train_set[sorted_columns[num-1]].mode()[0]
                 test[sorted_columns[num-1]] = mode_value
@@ -165,7 +165,7 @@ def main(dataset, model, task, degree, export_dataset):
     if export_dataset:
         train_set.to_csv('train.csv', index=False)
         for index, test_set in enumerate(test_sets):
-            test_set.to_csv('test_' + index + '.csv', index=False)
+            test_set.to_csv('test_' + str(index) + '.csv', index=False)
 
     # 3. evaluate model
     evaluate_model(dataset, model, train_set, test_sets)

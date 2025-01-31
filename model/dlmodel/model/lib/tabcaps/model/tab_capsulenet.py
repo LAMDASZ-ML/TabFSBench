@@ -1,8 +1,8 @@
 import torch
 from torch import nn
 import torch.nn.functional as F
-from model.lib.tabcaps.model.AbstractLayer import AbstractLayer
-import model.lib.tabcaps.model.sparsemax as sparsemax
+from ..model.AbstractLayer import AbstractLayer
+from ..model import sparsemax as sparsemax
 
 class PrimaryCapsuleGenerator(nn.Module):
     def __init__(self, num_feature, capsule_dim):

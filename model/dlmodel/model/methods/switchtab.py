@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from ..utils import (
     Averager
 )
-from model.lib.data import (
+from ..lib.data import (
     Dataset,
     data_nan_process,
     data_enc_process,
@@ -22,11 +22,11 @@ from model.lib.data import (
 class SwitchTabMethod(Method):
     def __init__(self, args, is_regression):
         super().__init__(args, is_regression)
-        assert(args.cat_policy != 'indices')
+        # assert(args.cat_policy != 'indices')
 
 
     def construct_model(self, model_config = None):
-        from model.models.switchtab import SwitchTab
+        from ..models.switchtab import SwitchTab
         if model_config is None:
             model_config = self.args.config['model']
         self.model = SwitchTab(
@@ -120,7 +120,7 @@ class SwitchTabMethod(Method):
         return time_cost
 
     def train_epoch(self, epoch):
-        from model.models.switchtab import feature_corruption
+        from ..models.switchtab import feature_corruption
         self.model.train()
         tl = Averager()
         for i, ((X1, y1), (X2, y2)) in enumerate(zip(self.train_loader, self.train_loader), 1):

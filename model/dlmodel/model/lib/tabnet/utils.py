@@ -8,7 +8,7 @@ from sklearn.utils import check_array
 import pandas as pd
 import warnings
 
-from model.lib.tabcaps.lib.utils import FastTensorDataLoader
+from ..tabcaps.lib.utils import FastTensorDataLoader
 
 
 class TorchDataset(Dataset):

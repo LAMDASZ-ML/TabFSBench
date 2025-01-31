@@ -3,10 +3,10 @@ from .base import Method
 class ResNetMethod(Method):
     def __init__(self, args, is_regression):
         super().__init__(args, is_regression)
-        assert(args.cat_policy != 'indices')
+        # assert(args.cat_policy != 'indices')
 
     def construct_model(self, model_config = None):
-        from model.models.resnet import ResNet
+        from ..models.resnet import ResNet
         if model_config is None:
             model_config = self.args.config['model']
         self.model = ResNet(

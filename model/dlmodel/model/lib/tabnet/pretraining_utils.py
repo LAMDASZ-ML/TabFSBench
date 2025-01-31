@@ -1,5 +1,5 @@
 from torch.utils.data import DataLoader
-from model.tabnet.utils import (
+from ..tabnet.utils import (
     create_sampler,
     SparsePredictDataset,
     PredictDataset,

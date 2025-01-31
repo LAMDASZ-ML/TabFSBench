@@ -10,7 +10,7 @@ import delu
 import faiss
 import faiss.contrib.torch_utils
 
-from model.lib.tabr.utils import make_module
+from ..lib.tabr.utils import make_module
 # adapted from https://github.com/yandex-research/tabular-dl-tabr/blob/main/bin/tabr.py
 
 class TabR(nn.Module):

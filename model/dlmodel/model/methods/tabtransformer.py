@@ -4,12 +4,12 @@ import torch
 class TabTransformerMethod(Method):
     def __init__(self, args, is_regression):
         super().__init__(args, is_regression)
-        assert(args.cat_policy == 'indices')
+        # assert(args.cat_policy == 'indices')
 
     def construct_model(self, model_config = None):
         if model_config is None:
             model_config = self.args.config['model']
-        from model.models.tabtransformer import TabTransformerModel
+        from ..models.tabtransformer import TabTransformerModel
         self.model = TabTransformerModel(
             categories=self.categories,
             num_continuous=self.d_in,

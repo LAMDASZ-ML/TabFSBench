@@ -18,11 +18,11 @@ import time
 class TabCapsMethod(Method):
     def __init__(self, args, is_regression):
         super().__init__(args, is_regression)
-        assert(args.cat_policy != 'indices')
+        # assert(args.cat_policy != 'indices')
         assert(is_regression == False)
 
     def construct_model(self, model_config = None):
-        from model.models.tabcaps import TabCapsClassifier
+        from ..models.tabcaps import TabCapsClassifier
         from qhoptim.pyt import QHAdam
         if model_config is None:
             model_config = self.args.config['model']

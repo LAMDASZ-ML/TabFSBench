@@ -1,5 +1,5 @@
 import torch
-from model.tabnet.utils import define_device
+from ..tabnet.utils import define_device
 import numpy as np
 
 class RegressionSMOTE():

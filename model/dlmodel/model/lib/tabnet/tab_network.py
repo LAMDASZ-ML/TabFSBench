@@ -1,7 +1,7 @@
 import torch
 from torch.nn import Linear, BatchNorm1d, ReLU
 import numpy as np
-from model.lib.tabnet import sparsemax
+from ..tabnet import sparsemax
 from sklearn.decomposition import PCA
 
 

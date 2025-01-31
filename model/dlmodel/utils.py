@@ -57,7 +57,7 @@ def test_model(dataset, dataset_task, model, train_set, test_sets):
         file = os.path.join(current_dir, "../../configs/default/tabpfn.json")
         with open(file, 'r') as f:
             param_grid = json.load(f)
-        model = TabPFNClassifier(device='cuda', N_ensemble_configurations=32)
+        model = TabPFNClassifier(device='cuda', N_ensemble_configurations=16)
         grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5)
         length = min(1024, len(train_set))
         grid_search.fit(train_set.iloc[:length, :-1], train_set.iloc[:length, -1])

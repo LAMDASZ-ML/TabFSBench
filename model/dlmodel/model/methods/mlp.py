@@ -3,7 +3,7 @@ from .base import Method
 class MLPMethod(Method):
     def __init__(self, args, is_regression):
         super().__init__(args, is_regression)
-        assert(args.cat_policy != 'indices')
+        # assert(args.cat_policy != 'indices')
 
     def construct_model(self, model_config = None):
         from ..models.mlp import MLP

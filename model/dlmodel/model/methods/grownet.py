@@ -14,7 +14,7 @@ import time
 class GrowNetMethod(Method):
     def __init__(self, args, is_regression):
         super().__init__(args, is_regression)
-        assert(args.cat_policy == 'indices')
+        # assert(args.cat_policy == 'indices')
         if is_regression:
             self.loss_f1 = torch.nn.MSELoss()
             self.loss_f2 = torch.nn.MSELoss()
@@ -28,7 +28,7 @@ class GrowNetMethod(Method):
             model_config = self.args.config['model']
         self.sub_model_config = model_config
         self.ensemble_model_config = self.args.config['ensemble_model']
-        from model.models.grownet import DynamicNet
+        from ..models.grownet import DynamicNet
         self.model = DynamicNet(
             categories = self.categories,
             **self.ensemble_model_config
@@ -59,7 +59,7 @@ class GrowNetMethod(Method):
         if not train:
             return
 
-        from model.models.grownet import MLP_2HL
+        from ..models.grownet import MLP_2HL
         training_config = self.args.config['training']
         learning_rate = training_config['lr']
         weight_decay = training_config['weight_decay']
@@ -187,7 +187,7 @@ class GrowNetMethod(Method):
 
     def predict(self, data, info, model_name):
         N,C,y = data
-        from model.models.grownet import DynamicNet,MLP_2HL
+        from ..models.grownet import DynamicNet,MLP_2HL
         self.model = DynamicNet.from_file(
             self.args.save_path + "/final-{}.pt".format(str(self.args.seed)),
             lambda stage: MLP_2HL.get_model(stage, argparse.Namespace(**self.sub_model_config)),

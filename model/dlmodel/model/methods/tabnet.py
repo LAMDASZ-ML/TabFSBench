@@ -16,10 +16,10 @@ import time
 class TabNetMethod(Method):
     def __init__(self, args, is_regression):
         super().__init__(args, is_regression)
-        assert(args.cat_policy != 'indices')
+        # assert(args.cat_policy != 'indices')
 
     def construct_model(self, model_config = None):
-        from model.models.tabnet import TabNetClassifier, TabNetRegressor
+        from ..models.tabnet import TabNetClassifier, TabNetRegressor
         if model_config is None:
             model_config = self.args.config['model']
         if self.is_regression:
@@ -89,7 +89,7 @@ class TabNetMethod(Method):
             eval_metric = ['rmse']
             task = "regression"
         elif self.is_binclass:
-            task = "binclass"
+            task = "binary"
         else:
             task = "multiclass"
         tic = time.time()

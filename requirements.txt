@@ -3,6 +3,8 @@ argparse
 astropy
 catboost
 category_encoders
+delu
+einops
 python-dotenv
 faiss-gpu
 simplejson
@@ -12,10 +14,11 @@ numpy
 openai
 pandas
 pytorch_tabnet
+qhoptim
 scikit-learn==1.5.2 # The newest version 1.6 conflicts with XGBoost 2.1.3
 scipy
-tabpfn==0.10.0
-torch
+tabpfn==0.1.10 # You can use the newest version 2.0.3 to evaluate TabPFNv2
+torch==2.5.1 # The newest version 2.6.0 conflicts with the default value of the `weights_only` argument
 tqdm
 transformers
 xgboost

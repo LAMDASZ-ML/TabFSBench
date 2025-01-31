@@ -13,7 +13,7 @@ from torch.utils.data import DataLoader
 import torch.nn.functional as F
 import category_encoders
 
-BINCLASS = 'binclass'
+BINCLASS = 'binary'
 MULTICLASS = 'multiclass'
 REGRESSION = 'regression'
 

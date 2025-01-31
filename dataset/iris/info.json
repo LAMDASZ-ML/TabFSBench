@@ -1,4 +1,5 @@
 {
     "task": "multiclass",
-    "link": "https://www.kaggle.com/datasets/uciml/iris"
+    "link": "https://www.kaggle.com/datasets/uciml/iris",
+    "num_classes": [3]
 }

@@ -1,5 +1,6 @@
 {
     "learning_rate": [0.01],
     "depth": [4],
-    "iterations": [500]
+    "iterations": [500],
+    "logging_level": ["Silent"]
 }

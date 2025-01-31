@@ -2,5 +2,6 @@
     "num_leaves": [31],
     "learning_rate": [0.1],
     "min_data_in_leaf": [20],
-    "min_sum_hessian_in_leaf": [0.001]
+    "min_sum_hessian_in_leaf": [0.001],
+    "verbose": [-1]
 }

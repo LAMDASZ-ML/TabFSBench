@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 import torch.nn as nn
-import model.lib.tabcaps.model.sparsemax as sparsemax
+from ..model import sparsemax as sparsemax
 import torch.nn.functional as F
 
 def initialize_glu(module, input_dim, output_dim):

@@ -1,9 +1,9 @@
 import torch
 import numpy as np
 from scipy.special import softmax
-from model.tabnet.utils import SparsePredictDataset, PredictDataset, filter_weights
-from model.tabnet.abstract_model import TabModel
-from model.tabnet.multiclass_utils import infer_multitask_output, check_output_dim
+from ..tabnet.utils import SparsePredictDataset, PredictDataset, filter_weights
+from ..tabnet.abstract_model import TabModel
+from ..tabnet.multiclass_utils import infer_multitask_output, check_output_dim
 from torch.utils.data import DataLoader
 import scipy
 

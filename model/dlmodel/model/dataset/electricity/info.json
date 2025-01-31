@@ -1,4 +1,1 @@
-{
-    "task": "binary",
-    "link": "https://www.kaggle.com/datasets/vstacknocopyright/electricity"
-}
+{"task": "binary", "link": "https://www.kaggle.com/datasets/vstacknocopyright/electricity", "n_num_features": 8, "n_cat_features": 0}
