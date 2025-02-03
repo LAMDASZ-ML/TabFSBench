@@ -3,7 +3,11 @@
         TabFSBench: Tabular Benchmark for Feature Shifts in Open Environment
     </h1>
 </div>
-
+<div align="center">
+<p>
+        <a href="https://arxiv.org/abs/2501.18935">[Paper]</a> <a href="https://github.com/LAMDASZ-ML/TabFSBench">[Code]</a> 
+    <p>
+</div>
 
 
 
@@ -21,24 +25,22 @@
 - **Exportable Datasets**: Be able to export the feature-shift version of the given dataset.
 - **Addable Components**: Supports to add new datasets and models, and export the given dataset under the specific experiment.
 
-[//]: # (**If you use any content of this repo for your work, please cite the following bib entries:**)
+**If you use the benchmark in your research, please cite the paper:**
 
-[//]: # ()
-[//]: # (```bibtex)
+```bibtex
 
-[//]: # (@article{ye2024closerlookdeeplearning,)
+@article{cheng2025tabfsbenchtabularbenchmarkfeature,
 
-[//]: # (         title={A Closer Look at Deep Learning on Tabular Data}, )
+      title={TabFSBench: Tabular Benchmark for Feature Shifts in Open Environment},
 
-[//]: # (         author={Han-Jia Ye and Si-Yang Liu and Hao-Run Cai and Qi-Le Zhou and De-Chuan Zhan},)
+      author={Zi-Jian Cheng and Zi-Yi Jia and Zhi Zhou and Lan-Zhe Guo and Yu-Feng Li},
 
-[//]: # (         journal={arXiv preprint arXiv:2407.00956},)
+      journal={arXiv preprint arXiv:2501.18935},
 
-[//]: # (         year={2024})
+      year={2025}
+}
 
-[//]: # (})
-
-[//]: # (```)
+```
 
 ## Quickstart
 
@@ -46,9 +48,10 @@
 
 Download this GitHub repository.
 
-[//]: # (```bash)
-[//]: # (git clone https://github.com/LAMDASZ-ML/TabFSBench.git)
-[//]: # (```)
+```bash
+git clone https://github.com/LAMDASZ-ML/TabFSBench.git
+cd TabFSBench
+```
 
 ### 2. Environment setup
 
@@ -69,7 +72,7 @@ You need to input four parameters to use TabFSBench. There are dataset, model, t
 
 **export_dataset**: Whether to export the dataset or not. Default is 'False'.
 ```bash
-    python run_experiment.py --dataset DatasetName --model ModelName --task TaskName --degree Degree --export_dataset True/False
+python run_experiment.py --dataset DatasetName --model ModelName --task TaskName --degree Degree --export_dataset True/False
 ```
 
 In **example.sh** you can get different kinds of instruction samples.
@@ -78,7 +81,7 @@ In **example.sh** you can get different kinds of instruction samples.
 
 All the datasets used in TabFSBench are publicly available. You can get them from [OpenML](https://www.openml.org/) or [Kaggle](https://www.kaggle.com/). Also you can directly use them from `./datasets`.
 
-### How to Place Datasets
+### How to Add New Datasets
 
 Datasets used in TabFSBench are placed in the project's current directory, corresponding to the file name.
 
@@ -86,13 +89,14 @@ Each dataset folder consists of:
 
 - `dataset.csv`, which must be included.
 
-- `info.json`, which must include the following two contents (task can be "regression", "multiclass" or "binary", link can be from Kaggle or OpenML):
+- `info.json`, which must include the following two contents (task can be "regression", "multiclass" or "binary", link can be from Kaggle or OpenML, num_classes is optional):
   
 
   ```json
   {
     "task": "binary", 
-    "link": "www.kaggle.com"
+    "link": "www.kaggle.com",
+    "num_classes":
   }
   ```
 
@@ -107,7 +111,7 @@ TabFSBench is possible to test three kinds of models' performance directly, incl
 3. **[XGBoost](https://xgboost.readthedocs.io/en/latest/index.html)**: A machine-learning model incrementally building multiple decision trees by optimizing the loss function.
 
 #### Deep learning models
-You can their details from their papers or **[LAMDA-TALENT](https://github.com/qile2000/LAMDA-TALENT/tree/main)**
+We use LAMDA-TALENT to evaluate deep-learning models. You can get details from **[LAMDA-TALENT](https://github.com/qile2000/LAMDA-TALENT)**.
 1. **MLP**: A multi-layer neural network, which is implemented according to [RTDL](https://arxiv.org/abs/2106.11959).
 2. **ResNet**: A DNN that uses skip connections across many layers, which is implemented according to [RTDL](https://arxiv.org/abs/2106.11959).
 3. **[SNN](https://arxiv.org/abs/1706.02515)**: An MLP-like architecture utilizing the SELU activation, which facilitates the training of deeper neural networks.
@@ -125,14 +129,16 @@ You can their details from their papers or **[LAMDA-TALENT](https://github.com/q
 15. **[FT-Transformer](https://arxiv.org/abs/2106.11959)**: A token-based method which transforms features to embeddings and applies a series of attention-based transformations to the embeddings.
 16. **[TANGOS](https://openreview.net/pdf?id=n6H86gW8u0d)**: A regularization-based method for tabular data that uses gradient attributions to encourage neuron specialization and orthogonalization.
 17. **[SwitchTab](https://arxiv.org/abs/2401.02013)**: A self-supervised method tailored for tabular data that improves representation learning through an asymmetric encoder-decoder framework. Following the original paper, our toolkit uses a supervised learning form, optimizing both reconstruction and supervised loss in each epoch.
-18. **[TabPFN](https://arxiv.org/abs/2207.01848)**: A general model which involves the use of pre-trained deep neural networks that can be directly applied to any tabular task.
+18. **[TabPFN](https://arxiv.org/abs/2207.01848)**: A general model which involves the use of pre-trained deep neural networks that can be directly applied to any tabular task. TabFSBench uses the first version of TabPFN and supports to evaluate [TabPFNv2](https://www.nature.com/articles/s41586-024-08328-6) by updating the version. 
 
 #### LLMs
-1. **[Llama3-8B](https://huggingface.co/meta-llama/Meta-Llama-3-8B)**: Llama3-8B is released by Meta AI in April 2024. Due to memory limitations, TabFSBench only provides json files for LLM fine-tuning and testing (List Template for Q&A), asking users to use LLM locally.
+1. **[Llama3-8B](https://huggingface.co/meta-llama/Meta-Llama-3-8B)**: Llama3-8B is released by Meta AI in April 2024.
+   - Due to memory limitations, TabFSBench only provides json files for LLM fine-tuning and testing ( `datasetname_train.json / datasetname_test_i.json` , i means the degree of feature shifts), asking users to use LLM locally.
+   - TabFSBench provides the context of **Credit** Dataset. Users can rewrite background, features_information, declaration and question of `llm()` in `./model/utils.py`.
 
 #### Tabular LLMs
 1. **[TabLLM](https://arxiv.org/abs/2210.10723)**: A framework that leverages LLMs for efficient tabular data classification.
-2. **[UniPredict](https://arxiv.org/abs/2310.03266)**: A framework that firstly trains on multiple datasets to acquire a rich repository of prior knowledge. UniPredict-Light model that TabFSBench used is available at [Google Drive](https://drive.google.com/file/d/1ABsv0C9HSJ9-M3kpkGRIFEw-4ebKdA3h/view?usp=sharing). After downloading the model, place it in `Tabular-Bench/model/tabularLLM/files/unified/models` and rename it to `light_state.pt`.
+2. **[UniPredict](https://arxiv.org/abs/2310.03266)**: A framework that firstly trains on multiple datasets to acquire a rich repository of prior knowledge. UniPredict-Light model that TabFSBench used is available at [Google Drive](https://drive.google.com/file/d/1ABsv0C9HSJ9-M3kpkGRIFEw-4ebKdA3h/view?usp=sharing). After downloading the model, place it in `./model/tabularLLM/files/unified/models` and rename it to `light_state.pt`.
 
 ### How to Add New Models
 
@@ -140,17 +146,18 @@ TabFSBench provides two methods to evaluate new model on feature-shift experimen
 
 1. Export the dataset. Set export_dataset as True, then can get a csv file of a given dataset in a specific experiment.
 2. Import model python file.
-   - Add the model in `./model`.
-   - Add the method name in the `./model/utils.py`.
+   - Add the model name in `./run_experiment.py`.
+   - Add the model function in the `./model/utils.py` by leveraging parameters like dataset, model, train_set and test_sets.
    
 ## Experimental Results
-**1. Most models have the limited applicability in feature-shift scenarios.**
-<img src="./img/table3.png"  width="1000px">
+#### 1. Most models have the limited applicability in feature-shift scenarios.
+<img src="https://s2.loli.net/2025/01/31/wvLWCdt3HrXMagG.png"  width="1000px">
 
-**2. Shifted features’ importance has a linear trend with model performance degradation.**
-<img src="./img/decrease_sum.png"  width="1000px">
+#### 2. Shifted features’ importance has a linear trend with model performance degradation.
+<img src="https://s2.loli.net/2025/01/31/7Hi8fX61DbTeq5L.png"  width="1000px">
+
 We use $\Delta$ (described in equation~\ref{delta_equation}) to measure the model performance Gap $Delta$. Sum of shifted feature set's correlations refers to the sum of Pearson correlation coefficients of shifted features. Notably, model performance Gap $Delta$ and sum of shifted feature set's correlations demonstrate a strong correlation, with a Pearson correlation coefficient of $\rho$ = 0.7405.
 
-**3. Model closed-environment performance correlates with feature-shift performance.**
-<img src="./img/figure4.png"  width="1000px">
+#### 3. Model closed-environment performance correlates with feature-shift performance.
+<img src="https://s2.loli.net/2025/01/31/SId5jgqNUvJxKzk.png"  width="1000px">
 Model closed-environment performance vs. model feature-shift performance. Closed-environment means that the dataset does not have any degree of feature shift. Feature-shift means average model performance in all degrees of feature shifts.
