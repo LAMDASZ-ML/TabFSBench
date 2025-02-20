@@ -5,7 +5,7 @@
 </div>
 <div align="center">
 <p>
-        <a href="https://arxiv.org/abs/2501.18935">[Paper]</a> <a href="https://github.com/LAMDASZ-ML/TabFSBench">[Code]</a> 
+        <a href="https://arxiv.org/abs/2501.18935">[Paper]</a> &nbsp;&nbsp;&nbsp; <a href="https://github.com/LAMDASZ-ML/TabFSBench">[Code]</a> &nbsp;&nbsp;&nbsp; <a href="https://clementcheng0217.github.io/Tab-index/">[Project page]</a>
     <p>
 </div>
 
@@ -41,6 +41,19 @@
 }
 
 ```
+
+<section class="section" id="News">
+    <div class="container is-max-desktop content">
+      <h2 class="title">News</h2>
+      <div style="border:1px solid #CCC"></div>  
+      <ul>
+      <li>[2025-02] Our <a href="https://clementcheng0217.github.io/Tab-index/" target="_blank">project page</a> is released. </li>
+      <li>[2025-01] Our <a href="https://github.com/LAMDASZ-ML/TabFSBench" target="_blank">code</a> is available now. </li>
+      <li>[2025-01] Our <a href="https://arxiv.org/abs/2501.18935" target="_blank">paper</a> is accessible now. </li>
+      </ul>
+      <p>If you have any questions, please contact us at chengzj@lamda.nju.edu.cn or submit an issue in the project <a href="https://github.com/LAMDASZ-ML/TabFSBench">issue</a>.</p>
+    </div>
+  </section>
 
 ## Quickstart
 
