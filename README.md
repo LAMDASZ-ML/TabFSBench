@@ -47,6 +47,7 @@
       <h2 class="title">News</h2>
       <div style="border:1px solid #CCC"></div>  
       <ul>
+      <li>[2025-03] Results from <a href="https://www.nature.com/articles/s41586-024-08328-6" target="_blank">TabPFNv2</a> are added. </li>
       <li>[2025-02] Our <a href="https://clementcheng0217.github.io/Tab-index/" target="_blank">project page</a> is released. </li>
       <li>[2025-01] Our <a href="https://github.com/LAMDASZ-ML/TabFSBench" target="_blank">code</a> is available now. </li>
       <li>[2025-01] Our <a href="https://arxiv.org/abs/2501.18935" target="_blank">paper</a> is accessible now. </li>
